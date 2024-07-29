@@ -31,6 +31,15 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "e6eb58a1-d3e4-4d34-a0be-d5d05b7b3a4b"
+      }
+    },
+    "owner": "zeyadbelal"
   }
 }
