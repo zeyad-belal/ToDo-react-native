@@ -10,13 +10,19 @@ interface TaskItemProps {
 }
 
 const TaskItem: React.FC<TaskItemProps> = ({ task, onEdit, onDelete, onReorder }) => {
+
   return (
     <View className="flex justify-between gap-y-2 px-4 py-2 my-2 bg-[#232323] rounded-xl">
       <View className={`py-1 px-2 rounded-full  max-w-fit self-start ${task.priority === 'low' ?'bg-green-500' : task.priority === 'medium'? 'bg-yellow-500' : 'bg-red-500'}`}>
       <Text className={`text-xs text-white capitalize font-light  `}>{task.priority}</Text>
       </View>
       <Text className="text-lg text-white tracking-wider capitalize font-medium">{task.title}</Text>
-      <Text className="text-white tracking-wide capitalize font-light text-xs">{task.content}</Text>
+      <Text className="text-white tracking-wide capitalize font-light text-xs">{task.description}</Text>
+      <View className='flex-row items-center'>
+
+      <Text className="text-gray-400 tracking-wide capitalize font-light text-xs">Due Date: </Text>
+      <Text className="text-white tracking-wide capitalize font-light text-xs">{task.dueDate.toLocaleString()}</Text>
+      </View>
       <View className="flex-row">
         {/* <TouchableOpacity onPress={() => onEdit(task.id)} className="mr-2">
           <Text className="text-blue-500">Edit</Text>

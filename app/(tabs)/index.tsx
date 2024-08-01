@@ -32,7 +32,7 @@ export default function HomeScreen() {
       {/* ===============================ACTIVE-TASKS============================== */}
       <View className="px-6 bg-black h-full">
         <View className="flex-row justify-between gap-2 my-4">
-          <ThemedText>Ongoing</ThemedText>
+          <Text className="text-white">Ongoing</Text>
           <TouchableOpacity
             className="w-fit justify-center items-center  rounded-xl "
             onPress={() =>

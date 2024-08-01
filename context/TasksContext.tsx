@@ -20,10 +20,10 @@ export const TasksProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [tasks, setTasks] = useState<Task[]>([
-    { title: "got to gym", category: "mobile", id: "d", content: "this is a task" ,priority:'low',dueDate:'30 dec' },
-    { title: "buy some gorecry", category: "web", id: "dddf", content: "this is a task" ,priority:'high',dueDate:'30 dec' },
-    { title: "play cs go", category: "web", id: "ddgs", content: "this is a task" ,priority:'low',dueDate:'30 dec' },
-    { title: "study dsa", category: "desgin", id: "ddd", content: "this is a task" ,priority:'medium',dueDate:'30 dec' },
+    { title: "got to gym", category: "mobile", id: "d", description: "this is a task" ,priority:'low',dueDate:new Date(1598051730000) },
+    { title: "buy some gorecry", category: "web", id: "dddf", description: "this is a task" ,priority:'high',dueDate:new Date(1598051730000) },
+    { title: "play cs go", category: "web", id: "ddgs", description: "this is a task" ,priority:'low',dueDate:new Date(1598051730000) },
+    { title: "study dsa", category: "desgin", id: "ddd", description: "this is a task" ,priority:'medium',dueDate:new Date(1598051730000) },
   ]);
 
   const addTask = (task: Task) => {

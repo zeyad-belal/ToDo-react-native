@@ -2,9 +2,9 @@ export interface Task {
   id: string;
   category: string;
   title: string;
-  content: string;
+  description: string;
   priority: "low" | "medium" | "high";
-  dueDate:string
+  dueDate:Date
 }
 
 import { ParamListBase } from "@react-navigation/native";
