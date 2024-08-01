@@ -3,7 +3,7 @@ import React, { createContext, useContext, useState, ReactNode } from "react";
 
 interface TasksContextType {
   tasks: Task[];
-  addTask: (task: Task) => void;
+  addNewTask: (task: Task) => void;
 }
 
 const TasksContext = createContext<TasksContextType | undefined>(undefined);
@@ -20,18 +20,18 @@ export const TasksProvider: React.FC<{ children: ReactNode }> = ({
   children,
 }) => {
   const [tasks, setTasks] = useState<Task[]>([
-    { title: "got to gym", category: "mobile", id: "d", description: "this is a task" ,priority:'low',dueDate:new Date(1598051730000) },
-    { title: "buy some gorecry", category: "web", id: "dddf", description: "this is a task" ,priority:'high',dueDate:new Date(1598051730000) },
-    { title: "play cs go", category: "web", id: "ddgs", description: "this is a task" ,priority:'low',dueDate:new Date(1598051730000) },
-    { title: "study dsa", category: "desgin", id: "ddd", description: "this is a task" ,priority:'medium',dueDate:new Date(1598051730000) },
+    { title: "got to gym", category: "mobile", id: "533", description: "this is a task" ,priority:'low',dueDate:new Date(1598051730000), active:true },
+    { title: "buy some gorecry", category: "web", id: "435", description: "this is a task" ,priority:'high',dueDate:new Date(1598051730000), active:true },
+    { title: "play cs go", category: "web", id: "6526", description: "this is a task" ,priority:'low',dueDate:new Date(1598051730000), active:false },
+    { title: "study dsa", category: "desgin", id: "876532", description: "this is a task" ,priority:'medium',dueDate:new Date(1598051730000), active:true },
   ]);
 
-  const addTask = (task: Task) => {
+  const addNewTask = (task: Task) => {
     setTasks([...tasks, task]);
   };
 
   return (
-    <TasksContext.Provider value={{ tasks, addTask }}>
+    <TasksContext.Provider value={{ tasks, addNewTask }}>
       {children}
     </TasksContext.Provider>
   );

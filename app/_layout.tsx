@@ -8,6 +8,7 @@ import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import "react-native-reanimated";
+import { RootSiblingParent } from 'react-native-root-siblings';
 
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { TasksProvider } from "@/context/TasksContext";
@@ -32,13 +33,18 @@ export default function RootLayout() {
   }
 
   return (
-    <TasksProvider>
-      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="+not-found" />
-        </Stack>
-      </ThemeProvider>
-    </TasksProvider>
+    <RootSiblingParent>
+      <TasksProvider>
+        <ThemeProvider
+          value={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+        >
+          <Stack>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="[TaskId]" options={{ headerShown: false }} />
+            <Stack.Screen name="+not-found" />
+          </Stack>
+        </ThemeProvider>
+      </TasksProvider>
+    </RootSiblingParent>
   );
 }

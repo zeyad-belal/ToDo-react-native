@@ -5,11 +5,6 @@ export interface Task {
   description: string;
   priority: "low" | "medium" | "high";
   dueDate:Date
+  active:boolean
 }
 
-import { ParamListBase } from "@react-navigation/native";
-
-export interface RootStackParamList extends ParamListBase {
-  Home: undefined;
-  AllTasks: { title: string };
-}

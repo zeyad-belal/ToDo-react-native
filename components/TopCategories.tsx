@@ -1,9 +1,8 @@
 import React from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
-import { NavigationProp, useNavigation } from "@react-navigation/native";
 import { useTasks } from "../context/TasksContext";
-import { RootStackParamList } from "@/lib/types";
 import { HelloWave } from "./HelloWave";
+import { router } from "expo-router";
 
 interface Category {
   title: string;
@@ -12,7 +11,6 @@ interface Category {
 
 const TopCategories: React.FC = () => {
   const { tasks } = useTasks();
-  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
   const calculateTopCategories = (): Category[] => {
     const categoryCounts: { [key: string]: number } = {};
@@ -57,9 +55,7 @@ const TopCategories: React.FC = () => {
             <TouchableOpacity
               className="bg-[#e5f19d] h-44 justify-center items-center  rounded-xl "
               onPress={() =>
-                navigation.navigate("AllTasks", {
-                  title: topCategories[0].title,
-                })
+                router.push(`/AllTasks/${topCategories[0].title}`)
               }
             >
               <Image
@@ -81,9 +77,7 @@ const TopCategories: React.FC = () => {
               <TouchableOpacity
                 className="flex-row justify-around px-12  bg-[#dbd4fe] h-20  items-center  rounded-xl"
                 onPress={() =>
-                  navigation.navigate("AllTasks", {
-                    title: topCategories[1].title,
-                  })
+                  router.push(`/AllTasks/${topCategories[1].title}`)
                 }
               >
                 <Image
@@ -106,9 +100,7 @@ const TopCategories: React.FC = () => {
               <TouchableOpacity
                 className="flex-row justify-around px-12 bg-[#defff8] h-20  items-center  rounded-xl"
                 onPress={() =>
-                  navigation.navigate("AllTasks", {
-                    title: topCategories[2].title,
-                  })
+                  router.push(`/AllTasks/${topCategories[2].title}`)
                 }
               >
                 <Image

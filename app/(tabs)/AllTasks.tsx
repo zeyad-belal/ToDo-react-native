@@ -6,7 +6,7 @@ import { View, TextInput, Button, FlatList } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-const HomeScreen: React.FC = () => {
+const Page: React.FC = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
 
 
@@ -25,7 +25,7 @@ const HomeScreen: React.FC = () => {
 
   return (
     <SafeAreaView className="flex-1 p-5 bg-white">
-      <FlatList
+      {/* <FlatList
         data={tasks}
         renderItem={({ item }) => (
           <TaskItem
@@ -36,9 +36,9 @@ const HomeScreen: React.FC = () => {
           />
         )}
         keyExtractor={(item) => item.id.toString()}
-      />
+      /> */}
     </SafeAreaView>
   );
 };
 
-export default HomeScreen;
+export default Page;
