@@ -9,6 +9,7 @@ import { router } from "expo-router";
 
 export default function HomeScreen() {
   const { tasks } = useTasks();
+  const activeTasks = tasks.filter((task) => task.active);
 
   return (
     <SafeAreaView className="pt-2">
@@ -20,18 +21,21 @@ export default function HomeScreen() {
           <Text className="text-white">Ongoing</Text>
           <TouchableOpacity
             className="w-fit justify-center items-center  rounded-xl "
-            onPress={() =>
-              router.push("/AllTasks")
-            }
+            onPress={() => router.push("/AllTasks")}
           >
             <Text className="text-gray-400 font-light text-xs capitalize">
               See All
             </Text>
           </TouchableOpacity>
         </View>
+        {!activeTasks?.length ? (
+          <Text className="text-gray-300 mx-auto text-md  mt-4">
+            Add active Tasks to appear here!
+          </Text>
+        ) : null}
 
         <FlatList
-          data={tasks}
+          data={activeTasks}
           renderItem={({ item }) => (
             <TaskItem
               key={item.id}

@@ -31,10 +31,6 @@ const TopCategories: React.FC = () => {
 
   const topCategories = calculateTopCategories();
 
-  if (tasks.length === 0) {
-    return null;
-  }
-
   return (
     <View className="min-h-fit">
       <View className="px-6">
@@ -50,74 +46,66 @@ const TopCategories: React.FC = () => {
       </View>
 
       <View className="flex-row px-6 pb-6">
-        {topCategories[0] && (
-          <View className="w-[30%]  rounded-xl mr-4 shadow-md  shadow-[#e4f19d60]">
+        <View className="w-[30%]  rounded-xl mr-4 shadow-md  shadow-[#e4f19d60]">
+          <TouchableOpacity
+            className="bg-[#e5f19d] h-44 justify-center items-center  rounded-xl "
+            onPress={() => router.push(`/Category/${topCategories[0].title}`)}
+          >
+            <Image
+              source={require(`./../assets/images/categ/5.png`)}
+              className="h-12 w-12"
+            />
+            <Text className="text-black font-semibold text-md tracking-tighter capitalize">
+              {topCategories[0]?.title || "__"}
+            </Text>
+            <Text className="text-black font-light capitalize text-xs">
+              {topCategories[0]?.count || "0"} Tasks
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        <View className="flex-1">
+          <View className="flex-1 mb-2 rounded-xl  shadow-md  shadow-[#dbd4fe60]">
             <TouchableOpacity
-              className="bg-[#e5f19d] h-44 justify-center items-center  rounded-xl "
-              onPress={() =>
-                router.push(`/AllTasks/${topCategories[0].title}`)
-              }
+              className="flex-row justify-around px-12  bg-[#dbd4fe] h-20  items-center  rounded-xl"
+              onPress={() => router.push(`/Category/${topCategories[1].title}`)}
             >
               <Image
-                source={require(`./../assets/images/categ/5.png`)}
+                source={require(`./../assets/images/categ/2.png`)}
                 className="h-12 w-12"
               />
-              <Text className="text-black font-semibold text-lg capitalize">
-                {topCategories[0].title}
-              </Text>
-              <Text className="text-black font-light capitalize text-xs">
-                {topCategories[0].count} Tasks
-              </Text>
+              <View>
+                <Text className="text-black font-semibold text-md tracking-tighter capitalize">
+                  {topCategories[1]?.title || "__"}
+                </Text>
+                <Text className="text-black font-light capitalize text-xs">
+                  {topCategories[1]?.count || "0"} Tasks
+                </Text>
+              </View>
             </TouchableOpacity>
           </View>
-        )}
-        <View className="flex-1">
-          {topCategories[1] && (
-            <View className="flex-1 mb-2 rounded-xl  shadow-md  shadow-[#dbd4fe60]">
-              <TouchableOpacity
-                className="flex-row justify-around px-12  bg-[#dbd4fe] h-20  items-center  rounded-xl"
-                onPress={() =>
-                  router.push(`/AllTasks/${topCategories[1].title}`)
-                }
-              >
-                <Image
-                  source={require(`./../assets/images/categ/2.png`)}
-                  className="h-12 w-12"
-                />
-                <View>
-                  <Text className="text-black font-semibold text-lg capitalize">
-                    {topCategories[1].title}
-                  </Text>
-                  <Text className="text-black font-light capitalize text-xs">
-                    {topCategories[1].count} Tasks
-                  </Text>
-                </View>
-              </TouchableOpacity>
-            </View>
-          )}
-          {topCategories[2] && (
-            <View className="flex-1 mt-2 rounded-xl shadow-md  shadow-[#defff860]">
-              <TouchableOpacity
-                className="flex-row justify-around px-12 bg-[#defff8] h-20  items-center  rounded-xl"
-                onPress={() =>
-                  router.push(`/AllTasks/${topCategories[2].title}`)
-                }
-              >
-                <Image
-                  source={require(`./../assets/images/categ/1.png`)}
-                  className="h-12 w-12"
-                />
-                <View>
-                  <Text className="text-black font-semibold text-lg capitalize">
-                    {topCategories[2].title}
-                  </Text>
-                  <Text className="text-black font-light capitalize text-xs">
-                    {topCategories[2].count} Tasks
-                  </Text>
-                </View>
-              </TouchableOpacity>
-            </View>
-          )}
+
+          <View className="flex-1 mt-2 rounded-xl shadow-md  shadow-[#defff860]">
+            <TouchableOpacity
+              className="flex-row justify-around px-12 bg-[#defff8] h-20  items-center  rounded-xl"
+              onPress={() => router.push(`/Category/${topCategories[2].title}`)}
+            >
+              <Image
+                source={require(`./../assets/images/categ/1.png`)}
+                className="h-12 w-12"
+              />
+              <View>
+                <Text className="text-black font-semibold text-md tracking-tighter capitalize">
+                  {topCategories[2]?.title || "__"}
+                </Text>
+                <Text className="text-black font-light capitalize text-xs">
+                  {topCategories[2]?.count || "0"} Tasks
+                </Text>
+              </View>
+            </TouchableOpacity>
+          </View>
+
+
         </View>
       </View>
     </View>

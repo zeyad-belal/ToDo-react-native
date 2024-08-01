@@ -39,6 +39,9 @@ const TaskItem: React.FC<TaskItemProps> = ({
         <Text className="text-lg text-white tracking-wider capitalize font-medium">
           {task.title}
         </Text>
+        {/* <Text className="text-sm text-white tracking-wider capitalize font-medium">
+          {task.category}
+        </Text> */}
         <Text className="text-white tracking-wide capitalize font-light text-xs">
           {task.description}
         </Text>

@@ -1,42 +1,29 @@
 import TaskItem from "@/components/TaskItem";
-import TaskList from "@/components/TaskList";
-import { Task } from "@/lib/types";
-import React, { useState } from "react";
-import { View, TextInput, Button, FlatList } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
+import { useTasks } from "@/context/TasksContext";
+import React from "react";
+import {  FlatList, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 const Page: React.FC = () => {
-  const [tasks, setTasks] = useState<Task[]>([]);
-
-
-  const editTask = (id: string) => {
-    // Implement edit functionality
-  };
-
-  const deleteTask = (id: string) => {
-    setTasks(tasks.filter(task => task.id !== id));
-  };
-
-  const reorderTask = (id: string) => {
-    // Implement reorder functionality
-  };
-
+  const { tasks } = useTasks();
 
   return (
-    <SafeAreaView className="flex-1 p-5 bg-white">
-      {/* <FlatList
+    <SafeAreaView className="flex-1 p-5 pb-0 bg-black h-full ">
+      <Text className="my-4 text-2xl text-white tracking-wider capitalize font-semibold">
+        Your Tasks :
+      </Text>
+      <FlatList
         data={tasks}
         renderItem={({ item }) => (
           <TaskItem
             task={item}
-            onEdit={editTask}
-            onDelete={deleteTask}
-            onReorder={reorderTask}
+            onEdit={() => {}}
+            onDelete={() => {}}
+            onReorder={() => {}}
           />
         )}
         keyExtractor={(item) => item.id.toString()}
-      /> */}
+      />
     </SafeAreaView>
   );
 };
