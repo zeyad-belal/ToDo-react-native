@@ -9,23 +9,23 @@ This To-Do App is designed to help users manage their tasks efficiently. Users c
 ## Project Structure
 
 ##app
-# ├── (tabs)
-# │ ├── __layout.tsx
-# │ ├── Add.tsx
-# │ ├── AllTasks.tsx
-# │ ├── index.tsx
-# ├── Category
-# │ └── [category].tsx
-# ├── _layout.tsx
-# ├── [TaskId]
-# ├── +html
-# ├── +not-found
-# assets
-# components
-# constants
-# hooks
-# lib
-# node_modules
+ ├── (tabs) <br />
+ │ ├── __layout.tsx <br />
+ │ ├── Add.tsx <br />
+ │ ├── AllTasks.tsx
+ │ ├── index.tsx
+ ├── Category
+ │ └── [category].tsx
+ ├── _layout.tsx
+ ├── [TaskId]
+ ├── +html
+ ├── +not-found
+ assets
+ components
+ constants
+ hooks
+ lib
+ node_modules
 
 
 
