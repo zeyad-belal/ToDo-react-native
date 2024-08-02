@@ -1,50 +1,84 @@
-# Welcome to your Expo app 👋
+# To-Do App
+### link to download android build https://expo.dev/artifacts/eas/4kPWx5G4a7xBrHSR8huGEe.aab
+## Running Commands
+Start the project: npm start
+Reset the project: npm run reset-project
+Run on Android: npm run android
+Run on iOS: npm run ios
+Run on Web: npm run web
+Run tests: npm test
+Lint the project: npm run lint
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## Project Overview
 
-## Get started
+This To-Do App is designed to help users manage their tasks efficiently. Users can add, edit, delete, and reorder tasks. The app also provides the ability to filter tasks by category and status. Future improvements will include notifications for task due dates and enhanced UI with animations.
 
-1. Install dependencies
+## Project Structure
 
-   ```bash
-   npm install 
-   ```
+app
+├── (tabs)
+│ ├── __layout.tsx
+│ ├── Add.tsx
+│ ├── AllTasks.tsx
+│ ├── index.tsx
+├── Category
+│ └── [category].tsx
+├── _layout.tsx
+├── [TaskId]
+├── +html
+├── +not-found
+assets
+components
+constants
+hooks
+lib
+node_modules
 
-2. Start the app
 
-   ```bash
-    npx expo start
-   ```
 
-In the output, you'll find options to open the app in a
+- **app/(tabs)**: Contains the main tabs of the app.
+  - **__layout.tsx**: Layout component for the tabs.
+  - **Add.tsx**: Component for adding new tasks.
+  - **AllTasks.tsx**: Component displaying all tasks with filtering options.
+  - **index.tsx**: Landing page with links to the top 3 categories and ongoing tasks.
+- **app/Category/[category].tsx**: Dynamic route for displaying tasks by category.
+- **app/_layout.tsx**: General layout component.
+- **app/[TaskId]**: Dynamic route for task details.
+- **assets**: Contains static assets like images and icons.
+- **components**: Reusable components.
+- **constants**: Constants used throughout the app.
+- **hooks**: Custom hooks.
+- **lib**: Utility functions and libraries.
+- **node_modules**: Project dependencies.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Features
+Add, edit, delete, and reorder tasks.
+Filter tasks by category and status.
+Draggable ongoing tasks.
+Clickable tasks for detailed view.
+Technologies Used
+React Native: For building the mobile application.
+Expo: For developing, building, and deploying the app.
+TypeScript: For type safety and improved developer experience.
+NativeWind: For styling the application using Tailwind CSS in React Native.
+Tailwind CSS: For utility-first CSS framework.
+@expo/vector-icons: For using vector icons in the app.
+@react-native-async-storage/async-storage: For persistent storage of tasks.
+@react-native-community/datetimepicker: For date and time picking functionality.
+@react-navigation/native: For navigation within the app.
+react-native-draglist: For draggable list functionality.
+react-native-reanimated: For smooth animations.
+react-native-root-toast: For toast notifications.
+react-native-safe-area-context: For handling safe area insets.
+react-native-screens: For native navigation components.
+react-native-select-dropdown: For dropdown menus.
+jest and jest-expo: For testing the application.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## Improvements
+Notifications: Implement notifications for task due dates.
+UI Enhancements: Improve the user interface and add animations.
 
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## Additional Features
+Subtasks: Allow users to create and manage subtasks.
+Recurring Tasks: Enable users to set tasks that recur at regular intervals.
+Priority Levels: Allow users to set priority levels for tasks.
