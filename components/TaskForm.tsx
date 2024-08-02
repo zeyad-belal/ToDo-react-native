@@ -47,6 +47,19 @@ export default function TaskForm({
 
   const toggleSwitch = () => setActive((previousState) => !previousState);
 
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [showTimePicker, setShowTimePicker] = useState(false);
+
+  const handleDateChange = (event: any, selectedDate: any) => {
+    setShowDatePicker(false);
+    setDate(selectedDate || date);
+  };
+
+  const handleTimeChange = (event: any, selectedDate: any) => {
+    setShowTimePicker(false);
+    setDate(selectedDate || date);
+  };
+
   const onChange = (event: any, selectedDate: any) => {
     setDate(selectedDate);
   };
@@ -194,23 +207,40 @@ export default function TaskForm({
         <Text className="text-gray-500 text-sm font-semibold pl-1">
           Due Date:
         </Text>
+
         <View className="flex-row gap-x-2">
-          <DateTimePicker
-            testID="dateTimePicker"
-            value={date}
-            mode="date"
-            is24Hour={true}
-            onChange={onChange}
-            className="bg-white border border-red-400"
-          />
-          <DateTimePicker
-            testID="dateTimePicker"
-            value={date}
-            mode="time"
-            is24Hour={true}
-            onChange={onChange}
-            className="bg-white border border-red-400"
-          />
+          {/* ======================DATE===================== */}
+          <View className="gap-x-4 px-2 items-start ">
+            <Pressable onPress={() => setShowDatePicker((prev) => !prev)}>
+              <Text className="text-white mb-3">Select Date</Text>
+            </Pressable>
+            {showDatePicker && (
+              <DateTimePicker
+                testID="dateTimePicker"
+                value={date}
+                mode="date"
+                is24Hour={true}
+                onChange={handleDateChange}
+                display="default"
+              />
+            )}
+          </View>
+          {/* ======================TIME===================== */}
+          <View>
+            <Pressable onPress={() => setShowTimePicker((prev) => !prev)}>
+              <Text className="text-white mb-3">Select Time</Text>
+            </Pressable>
+            {showTimePicker && (
+              <DateTimePicker
+                testID="dateTimePicker"
+                value={date}
+                mode="time"
+                is24Hour={true}
+                onChange={handleTimeChange}
+                display="default"
+              />
+            )}
+          </View>
         </View>
       </View>
 
