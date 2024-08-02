@@ -8,9 +8,9 @@ This To-Do App is designed to help users manage their tasks efficiently. Users c
 
 ## Project Structure
 
-app
-├── (tabs)
-│ ├── __layout.tsx
+-app
+-├── (tabs)
+-│ ├── __layout.tsx
 │ ├── Add.tsx
 │ ├── AllTasks.tsx
 │ ├── index.tsx
