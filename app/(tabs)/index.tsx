@@ -16,10 +16,9 @@ function renderItem(info: DragListRenderItemInfo<Task>) {
   return (
     <TouchableOpacity
       key={item.id}
-      onPressIn={onDragStart}
+      onLongPress={onDragStart}
       onPressOut={onDragEnd}
       onPress={() => router.push(`/${item.id}`)}
-      className="mr-20 "
     >
       <TaskItem key={item.id} task={item} />
     </TouchableOpacity>
