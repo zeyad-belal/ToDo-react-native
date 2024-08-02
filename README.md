@@ -1,13 +1,6 @@
 # To-Do App
 ### link to download android build https://expo.dev/artifacts/eas/4kPWx5G4a7xBrHSR8huGEe.aab
-## Running Commands
-Start the project: npm start
-Reset the project: npm run reset-project
-Run on Android: npm run android
-Run on iOS: npm run ios
-Run on Web: npm run web
-Run tests: npm test
-Lint the project: npm run lint
+
 
 ## Project Overview
 
