@@ -31,10 +31,18 @@ export default function TaskForm({
   const { addNewTask, editTask } = useTasks();
 
   const [title, setTitle] = useState<string>(TaskToUpdate?.title || "");
-  const [category, setCategory] = useState<string>(TaskToUpdate?.category || "");
-  const [description, setDescription] = useState<string>(TaskToUpdate?.description || "");
-  const [priority, setPriority] = useState<"low" | "medium" | "high">(TaskToUpdate?.priority || "medium");
-  const [date, setDate] = useState(TaskToUpdate?.dueDate || new Date(1598051730000));
+  const [category, setCategory] = useState<string>(
+    TaskToUpdate?.category || ""
+  );
+  const [description, setDescription] = useState<string>(
+    TaskToUpdate?.description || ""
+  );
+  const [priority, setPriority] = useState<"low" | "medium" | "high">(
+    TaskToUpdate?.priority || "medium"
+  );
+  const [date, setDate] = useState(
+    TaskToUpdate?.dueDate || new Date(1598051730000)
+  );
   const [active, setActive] = useState<boolean>(TaskToUpdate?.active || true);
 
   const toggleSwitch = () => setActive((previousState) => !previousState);
@@ -227,7 +235,6 @@ export default function TaskForm({
           </Pressable>
         ) : null}
       </View>
-
     </ScrollView>
   );
 }
@@ -243,6 +250,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     paddingHorizontal: 7,
     marginVertical: 5,
+    borderWidth: 1,
+    borderColor: "#3d4040",
   },
   dropdownButtonTxtStyle: {
     flex: 1,
@@ -253,6 +262,8 @@ const styles = StyleSheet.create({
   dropdownMenuStyle: {
     backgroundColor: "#232323",
     borderRadius: 4,
+    borderWidth: 1,
+    borderColor: "#3d4040",
   },
   dropdownItemStyle: {
     width: "100%",
@@ -260,7 +271,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     justifyContent: "center",
     alignItems: "center",
-    paddingVertical: 8,
+    paddingVertical: 10,
   },
   dropdownItemTxtStyle: {
     flex: 1,

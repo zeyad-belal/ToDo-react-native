@@ -5,23 +5,14 @@ import { router } from "expo-router";
 
 interface TaskItemProps {
   task: Task;
-  onEdit: (id: string) => void;
-  onDelete: (id: string) => void;
-  onReorder: (id: string) => void;
 }
 
 const TaskItem: React.FC<TaskItemProps> = ({
   task,
-  onEdit,
-  onDelete,
-  onReorder,
 }) => {
 
   return (
-    <TouchableOpacity
-      onPress={() => router.push(`/${task.id || '445'}`)}
-      className="mr-2"
-    >
+
       <View className="flex justify-between gap-y-2 px-4 py-2 my-2 bg-[#232323] rounded-xl">
         <View
           className={`py-1 px-2 rounded-full  max-w-fit self-start ${
@@ -65,7 +56,7 @@ const TaskItem: React.FC<TaskItemProps> = ({
         </TouchableOpacity> */}
         </View>
       </View>
-    </TouchableOpacity>
+   
   );
 };
 

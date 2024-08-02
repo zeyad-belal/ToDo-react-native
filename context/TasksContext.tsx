@@ -1,4 +1,5 @@
 import { Task } from "@/lib/types";
+import { router } from "expo-router";
 import React, { createContext, useContext, useState, ReactNode } from "react";
 
 interface TasksContextType {
@@ -110,6 +111,7 @@ export const TasksProvider: React.FC<{ children: ReactNode }> = ({
 
   const deleteTask = (id: string) => {
     setTasks(tasks.filter((task) => task.id !== id));
+    router.back()
   };
 
   return (

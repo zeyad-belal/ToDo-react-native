@@ -6,10 +6,39 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useTasks } from "@/context/TasksContext";
 import TaskItem from "@/components/TaskItem";
 import { router } from "expo-router";
+import DragList, { DragListRenderItemInfo } from "react-native-draglist";
+import { Task } from "@/lib/types";
+import { useState } from "react";
 
-export default function HomeScreen() {
+function renderItem(info: DragListRenderItemInfo<Task>) {
+  const { item, onDragStart, onDragEnd, isActive } = info;
+
+  return (
+    <TouchableOpacity
+      key={item.id}
+      onPressIn={onDragStart}
+      onPressOut={onDragEnd}
+      onPress={() => router.push(`/${item.id}`)}
+      className="mr-14 "
+    >
+      <TaskItem key={item.id} task={item} />
+    </TouchableOpacity>
+  );
+}
+
+export default function Home() {
   const { tasks } = useTasks();
-  const activeTasks = tasks.filter((task) => task.active);
+  const [activeTasks, setActiveTasks] = useState(
+    tasks?.filter((task) => task.active)
+  );
+
+  async function onReordered(fromIndex: number, toIndex: number) {
+    const copy = [...activeTasks];
+    const removed = copy.splice(fromIndex, 1);
+
+    copy.splice(toIndex, 0, removed[0]);
+    setActiveTasks(copy);
+  }
 
   return (
     <SafeAreaView className="pt-2">
@@ -34,20 +63,12 @@ export default function HomeScreen() {
           </Text>
         ) : null}
 
-        <FlatList
+        <DragList
           data={activeTasks}
-          renderItem={({ item }) => (
-            <TaskItem
-              key={item.id}
-              task={item}
-              onEdit={() => {}}
-              onDelete={() => {}}
-              onReorder={() => {}}
-            />
-          )}
           keyExtractor={(item) => item.id.toString()}
+          onReordered={onReordered}
+          renderItem={renderItem}
           contentContainerStyle={{ paddingBottom: 700 }}
-          showsVerticalScrollIndicator={false}
         />
       </View>
 
