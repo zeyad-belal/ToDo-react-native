@@ -1,5 +1,4 @@
-import { TouchableOpacity, Text, View, FlatList } from "react-native";
-
+import { TouchableOpacity, Text, View } from "react-native";
 import TopCategories from "@/components/TopCategories";
 import { StatusBar } from "expo-status-bar";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -8,10 +7,13 @@ import TaskItem from "@/components/TaskItem";
 import { router } from "expo-router";
 import DragList, { DragListRenderItemInfo } from "react-native-draglist";
 import { Task } from "@/lib/types";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+const TASK_ORDER_KEY = "task_order";
 
 function renderItem(info: DragListRenderItemInfo<Task>) {
-  const { item, onDragStart, onDragEnd, isActive } = info;
+  const { item, onDragStart, onDragEnd } = info;
 
   return (
     <TouchableOpacity
@@ -27,9 +29,38 @@ function renderItem(info: DragListRenderItemInfo<Task>) {
 
 export default function Home() {
   const { tasks } = useTasks();
-  const [activeTasks, setActiveTasks] = useState(
+  const [activeTasks, setActiveTasks] = useState<Task[]>(
     tasks?.filter((task) => task.active)
   );
+
+  // Store the order of task IDs
+  const storeTaskOrder = async (order: string[]) => {
+    try {
+      await AsyncStorage.setItem(TASK_ORDER_KEY, JSON.stringify(order));
+    } catch (e) {
+      console.error("Error saving task order:", e);
+    }
+  };
+
+  // Load the stored order of task IDs and apply it
+  const loadTaskOrder = async () => {
+    try {
+      const jsonValue = await AsyncStorage.getItem(TASK_ORDER_KEY);
+      if (jsonValue) {
+        const storedOrder = JSON.parse(jsonValue);
+        const orderedTasks = storedOrder.map((id: string) =>
+          activeTasks.find((task) => task.id === id)
+        );
+        setActiveTasks(orderedTasks.filter((task:Task) => task));
+      }
+    } catch (e) {
+      console.error("Error loading task order:", e);
+    }
+  };
+
+  useEffect(() => {
+    loadTaskOrder();
+  }, []);
 
   async function onReordered(fromIndex: number, toIndex: number) {
     const copy = [...activeTasks];
@@ -37,18 +68,21 @@ export default function Home() {
 
     copy.splice(toIndex, 0, removed[0]);
     setActiveTasks(copy);
+
+    // Store the new order
+    const newOrder = copy.map((task) => task.id.toString());
+    storeTaskOrder(newOrder);
   }
 
   return (
     <SafeAreaView className="pt-2">
       <TopCategories />
 
-      {/* ===============================ACTIVE-TASKS============================== */}
       <View className="px-6 bg-black h-full ">
         <View className="flex-row justify-between gap-2 my-4">
           <Text className="text-white">Ongoing</Text>
           <TouchableOpacity
-            className="w-fit justify-center items-center  rounded-xl "
+            className="w-fit justify-center items-center rounded-xl "
             onPress={() => router.push("/AllTasks")}
           >
             <Text className="text-gray-400 font-light text-xs capitalize">
@@ -57,7 +91,7 @@ export default function Home() {
           </TouchableOpacity>
         </View>
         {!activeTasks?.length ? (
-          <Text className="text-gray-300 mx-auto text-md  mt-4">
+          <Text className="text-gray-300 mx-auto text-md mt-4">
             Add active Tasks to appear here!
           </Text>
         ) : null}

@@ -100,6 +100,8 @@ export default function AllTasks(){
           dropdownStyle={styles.dropdownMenuStyle}
         />
       </View>
+      {!filteredTasks.length ? <Text className="text-md text-gray-400 mx-auto mt-10">No tasks found</Text> : null}
+
       <FlatList
         data={filteredTasks}
         renderItem={({ item }) => <TaskItem task={item} />}
